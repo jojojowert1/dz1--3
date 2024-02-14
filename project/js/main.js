@@ -75,3 +75,33 @@ prev.onclick = () => {
 }
 
 autoSlider(index)
+
+const personsBlock = document.querySelector('.persons')
+
+const persons =  [
+    {
+        name: 'Gendalf',
+        age: 20
+    },
+    {
+       name: 'Harry Potter',
+       age: 25
+    },
+    {
+        name: "Naruto",
+        age: 38
+    },
+    {
+        name: 'Jonson',
+        age:50
+    }
+]
+
+persons.forEach((person)=>{
+    const personCard = document.createElement('div')
+
+    personCard.setAttribute('class', 'personCard')
+
+    personsBlock.appendChild(personCard)
+})
+console.log(personCard)
