@@ -22,4 +22,78 @@ const increment = () => {
     console.log(count)
 }
 
+// TAP SLIDER
+
+const tabContentItems = document.querySelectorAll('.tab_content_block')
+const tabItems = document.querySelectorAll('.tab_content_item')
+const tabItemsParent = document.querySelectorAll('.tab_content_items')
+
+let intervalId
+let slideIndex = 0
+const hideTabContend = ()=>{
+    tabContentItems.forEach((item)=> {
+        item.style.display = "none"
+    })
+    tabItems.forEach((item)=>{
+        item.classList.remove('.tab_contend_item_active')
+    })
+}
+
+const showTabContend = (index= 0)=>{
+    tabContentItems[index].style.display = 'block'
+    tabItems[index].add('tab_contend_item_active')
+}
+
+const startSlider = () => {
+  intervalId = setInterval(()=>{
+      slideIndex = (slideIndex +1) % tabItems.length
+  })
+}
+
+const stopSlider = () => {
+    clearInterval(intervalId)
+}
+
+tabItems.forEach((tab, index) => {
+    tab.addEventListener('click', ()=>{
+        slideIndex = index
+        showTabContend(slideIndex)
+        stopSlider()
+    })
+})
+
+
+
+
+hideTabContend()
+showTabContend()
+startSlider()
+
+
+tabItemsParent.onclick = (event) => {
+    if (event.target.classList.contains('tab_content_item')){
+        tabItems.forEach((tabItem, tabIndex) => {
+            if (event.target === tabItem) {
+                hideTabContent()
+                showTabContent(tabIndex)
+            }
+        })
+    }
+}
+
+
+
+const slider = (i = 0) => {
+    setInterval(() => {
+        i++
+        if (i > tabContentItems.length - 1) {
+            i = 0
+        }
+        hideTabContent()
+        showTabContent(i)
+    }, 3000)
+}
+
+slider()
+
 
