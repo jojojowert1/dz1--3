@@ -1,0 +1,9 @@
+{
+  "name": "Nurdin",
+  "age": 20,
+  "boolean": [true, false],
+  "none": null,
+  "object": {
+    "float": 20.2
+  }
+}
