@@ -109,7 +109,10 @@
     color: var(--orange);
     font-size: 20px;
 }
-
+.card h1 {
+    color: var(--orange);
+    font-size: 20px;
+}
 .card span {
     color: white;
     font-size: 30px;

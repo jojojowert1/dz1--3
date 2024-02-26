@@ -105,3 +105,5 @@ persons.forEach((person)=>{
     personsBlock.appendChild(personCard)
 })
 console.log(personCard)
+
+console.log(JSON)
