@@ -109,17 +109,14 @@ const somInput = document.querySelector('#som')
 const usdInput = document.querySelector('#usd')
 const eurInput = document.querySelector('#eur')
 
-console.log("rffr")
 const converter = (sourceElement, targetElement, targetElement2, current) => {
-    sourceElement.oninput = () => {
-        const request = new XMLHttpRequest()
-        request.open("GET", "../converter.json")
-        request.setRequestHeader("Content-type", "application/json")
-        request.send()
-
-        request.onload = () => {
-            const data = JSON.parse(request.response)
+    sourceElement.oninput = async () => {
+        try {
+            const response = await fetch('../data/converter.json')
+            const data = await response.json()
             console.log(data)
+            const inputValue = parseFloat(sourceElement.value)
+        if (!isNaN(inputValue)) {
             switch (current) {
                 case 'som':
                     targetElement.value = (sourceElement.value / data.usd).toFixed(2)
@@ -138,6 +135,9 @@ const converter = (sourceElement, targetElement, targetElement2, current) => {
             }
             sourceElement.value === '' && (targetElement.value = "")
             sourceElement.value === '' && (targetElement2.value = "")
+        }
+    }catch (error) {
+            alert('error', error)
         }
     }
 }
@@ -166,10 +166,14 @@ const renderData = (data) => {
     })
 }
 
-const getData = () => {
-    fetch(`${BASE_URL}?_limit=${limit}&_page=${page}`)
-.then(response => response.json())
-        .then(data => renderData(data))
+const getData = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}?_limit=${limit}&_page=${page}`)
+            .then(response => response.json())
+            .then(data => renderData(data))
+    }catch(error) {
+        console.log('error', error)
+    }
 }
 
 getData()
@@ -189,3 +193,25 @@ btnNext.onclick = () => {
     }
     getData()
 }
+
+// Weather
+
+const cityInput = document.querySelector('.cityName')
+const city= document.querySelector('.city')
+const temp= document.querySelector('.temp')
+const base_url="http://api.openweathermap.org"
+const api_key='e417df62e04d3b1b111abeab19cea714'
+const citySearch=() =>{
+    cityInput.oninput= async (event) =>{
+        try {
+            const response = await fetch(`${base_url}/data/2.5/weather?q=${event.target.value}&appid=${api_key}`)
+            const data = await response.json()
+            city.innerHTML=data.name || 'Город не найден...'
+            temp.innerHTML=data.main?.temp ? Math.round(data.main?.temp - 273) + '&degC': '...'
+        }catch (error) {
+
+        }
+    }
+
+}
+citySearch()

@@ -107,3 +107,12 @@ persons.forEach((person)=>{
 console.log(personCard)
 
 console.log(JSON)
+
+
+const url = `https://jsonplaceholder.typicode.com/posts`
+const getData = async()=>{
+   const response =await fetch(url)
+   const data = await response.json()
+    console.log(data)
+}
+getData()

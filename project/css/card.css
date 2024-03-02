@@ -1,0 +1,50 @@
+body{
+    background-image: url(https://wallpapers.com/images/hd/akira-background-mvkajwtm3baqs57f.jpg);
+}
+*{
+    overflow-y: hidden;
+}
+button{
+
+    margin-left: 610px;
+    width: 120px;
+    height: 60px;
+    background-color: rgba(9, 8, 8, 0.42);
+    font-family: "JetBrains Mono", serif;
+    border-radius: 30px;
+    cursor: pointer;
+    color: #ffffff;
+    box-sizing: border-box;
+    font-size: large;
+    text-blink: 1px;
+}
+button:hover{
+    width: 125px;
+    height: 65px;
+    background-color: rgba(255, 255, 255, 0.23);
+    transition:100ms;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+}
+img{
+    width: 150px;
+    border-radius: 150px;
+    border: 2px solid;
+}
+p{
+    color: white;
+    font-family: "Arial Black", sans-serif;
+    border: 2px solid;
+}
+span{
+    color: white;
+    font-family: "Arial Black", sans-serif;
+    border: 2px solid;
+}
+.person_cards{
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+}
